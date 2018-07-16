@@ -31,7 +31,8 @@ class Map extends React.Component {
         var images = this.props.images;
         if (this.props.showWorldMap) {
             images.unshift(
-                {'url': maps[this.props.mapQuality], 'topLat': 90, 'topLng': -180, 'bottomLat': -90, 'bottomLng': 180}
+                {'url': maps[this.props.mapQuality], 'topLat': this.props.bounds.topLat, 'topLng': this.props.bounds.topLng,
+                    'bottomLat': this.props.bounds.bottomLat, 'bottomLng': this.props.bounds.bottomLng}
             );
         }
         var width = this.props.width;
@@ -58,16 +59,16 @@ class Map extends React.Component {
                     <svg width={width} height={height}>
                         <g>
 
-                            <Images images={images} width={width} height={height}
+                            <Images images={images} width={width} height={height} bounds={bounds}
                             />
 
-                            <Polylines paths={this.props.polylines} width={width} height={height}
+                            <Polylines paths={this.props.polylines} width={width} height={height} bounds={bounds}
                             />
 
-                            <Circles circles={this.props.circles} width={width} height={height}
+                            <Circles circles={this.props.circles} width={width} height={height} bounds={bounds}
                             />
 
-                            <Polygons polygons={this.props.polygons} width={width} height={height}
+                            <Polygons polygons={this.props.polygons} width={width} height={height} bounds={bounds}
                             />
 
                         </g>
@@ -88,6 +89,7 @@ Map.propTypes = {
     polygons: PropTypes.arrayOf(PropTypes.object),
     showWorldMap: PropTypes.bool,
     initialPos: PropTypes.objectOf(PropTypes.number),
+    bounds: PropTypes.objectOf(PropTypes.number),
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired
 
@@ -101,7 +103,18 @@ Map.defaultProps = {
     buttons: [],
     polygons: [],
     showWorldMap: true,
-    initialPos: {'lat': 0, 'lng': 0, 'zoom': 1}
+    initialPos: {'lat': 0, 'lng': 0, 'zoom': 1},
+    bounds: {'topLat': 90, 'topLng': -180, 'bottomLat': -90, 'bottomLng': 180}
 };
 
 export default Map;
+//
+// {
+//     test: /\.(png|jp(e*)g|svg)$/,
+//         use: [{
+//     loader: 'url-loader',
+//     options: {
+//         name: 'images/[hash]-[name].[ext]'
+//     }
+// }]
+// }

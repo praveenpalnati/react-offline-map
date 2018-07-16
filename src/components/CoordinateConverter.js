@@ -1,15 +1,15 @@
-export function convertLng(lng, width) {
-    return (lng + 180) / (360 / width);
+export function convertLng(lng, width, bounds) {
+    return (lng - bounds.topLng) * width / (bounds.bottomLng - bounds.topLng);
 }
 
-export function convertLat(lat, height) {
-    return (90 - lat) / (180 / height);
+export function convertLat(lat, height, bounds) {
+    return (bounds.topLat - lat) * height / (bounds.topLat - bounds.bottomLat);
 }
 
-export function reverseLng(x, width) {
-    return ((360 * x) / width) - 180;
+export function reverseLng(x, width, bounds) {
+    return (((bounds.bottomLng - bounds.topLng) * x) / width) + bounds.topLng;
 }
 
-export function reverseLat(y, height) {
+export function reverseLat(y, height, bounds) {
     return 90 - ((y * (180 / height)));
 }

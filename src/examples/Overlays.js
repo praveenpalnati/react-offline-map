@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import Map from '../Map'
 import iraq from '../images/iraq.png';
 import sanfran from '../images/sanfran.png';
@@ -7,7 +7,7 @@ import baja from '../images/baja_peninsula.png';
 import bajaZoom from '../images/baja_peninsula_zoom.png';
 
 
-class Overlays extends Component {
+class Overlays extends React.Component {
     constructor(props) {
         super(props);
         this.state = ({

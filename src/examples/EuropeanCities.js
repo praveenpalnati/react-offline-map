@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import Map from '../Map'
 
 import europeanCities from '../data/europe_cities.json'
 
 
-class Example1 extends Component {
+class Example1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = ({

@@ -9,8 +9,8 @@ class Polygons extends React.Component {
             var fill = polygon.fill;
             var points = polygon.points.map(point => {
                 var split = point.split(',');
-                var x = convertLng(parseFloat(split[1]), this.props.width);
-                var y = convertLat(parseFloat(split[0]), this.props.height);
+                var x = convertLng(parseFloat(split[1]), this.props.width, this.props.bounds);
+                var y = convertLat(parseFloat(split[0]), this.props.height, this.props.bounds);
                 return x.toString() + ',' + y.toString()
             }).join(" ");
             return <polygon key={i} points={points} fill={fill}/>

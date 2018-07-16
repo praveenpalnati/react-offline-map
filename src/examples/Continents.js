@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import Map from '../Map'
 import testImage from '../images/mojave.png';
 
 
-class Continents extends Component {
+class Continents extends React.Component {
     constructor(props) {
         super(props);
         this.state = ({
