@@ -14,7 +14,6 @@ import world_map_low from './images/world_map_low.png';
 import world_map_medium from './images/world_map_medium.png';
 import world_map_high from './images/world_map_high.png';
 
-
 class Map extends React.Component {
 
     //TODO: Update text to be an object within circle
@@ -26,6 +25,14 @@ class Map extends React.Component {
             convertLat(init.lat, this.props.height, this.props.bounds),
             init.zoom
         );
+    }
+
+    clicked(event) {
+        this.props.handleClick( {
+            'lat': reverseLat(event.y, this.props.height, this.props.bounds),
+            'lng': reverseLng(event.x, this.props.width, this.props.bounds),
+            'evt': event.originalEvent
+        });
     }
 
     render() {
@@ -52,10 +59,7 @@ class Map extends React.Component {
 
                 <ReactSVGPanZoom
                     width={width} height={height}
-                    onClick={event => console.log(
-                        {'lat': reverseLat(event.y, height, this.props.bounds),
-                            'lng': reverseLng(event.x, width, this.props.bounds),
-                            'evt': event.originalEvent})}
+                    onClick={evt => this.clicked(evt)}
                     detectAutoPan={false}
                     ref={Viewer => this.Viewer = Viewer}>
 
@@ -93,6 +97,7 @@ Map.propTypes = {
     showWorldMap: PropTypes.bool,
     initialPos: PropTypes.objectOf(PropTypes.number),
     bounds: PropTypes.objectOf(PropTypes.number),
+    onClick: PropTypes.func,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired
 
@@ -100,6 +105,7 @@ Map.propTypes = {
 
 Map.defaultProps = {
     mapQuality: 'medium',
+    text: [],
     images: [],
     polylines: [],
     circles: [],
@@ -107,7 +113,8 @@ Map.defaultProps = {
     polygons: [],
     showWorldMap: true,
     initialPos: {'lat': 0, 'lng': 0, 'zoom': 1},
-    bounds: {'topLat': 90, 'topLng': -180, 'bottomLat': -90, 'bottomLng': 180}
+    bounds: {'topLat': 90, 'topLng': -180, 'bottomLat': -90, 'bottomLng': 180},
+    handleClick: () => {}
 };
 
 export default Map;

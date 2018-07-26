@@ -26,6 +26,17 @@ class Map extends React.Component {
             );
     }
 
+    defaultHandleClick = (event) => {
+        console.log("DEFAULT");
+        console.log(
+            {
+            'lat': reverseLat(event.y, this.props.height),
+            'lng': reverseLng(event.x, this.props.width),
+            'evt': event.originalEvent
+            }
+            )
+    };
+
     render() {
         var maps = {'low': world_map_low, 'medium': world_map_medium, 'high': world_map_high};
         var images = this.props.images;
@@ -47,34 +58,33 @@ class Map extends React.Component {
                     </button>);
                 })}
 
-                <ReactSVGPanZoom
-                    width={width} height={height}
-                    onClick={event => console.log(
-                        {'lat': reverseLat(event.y, height),
-                            'lng': reverseLng(event.x, width),
-                            'evt': event.originalEvent})}
-                    detectAutoPan={false}
-                    ref={Viewer => this.Viewer = Viewer}>
+                {/*<ReactSVGPanZoom*/}
+                    {/*width={width} height={height}*/}
+                    {/*// onClick={this.props.handleClick}*/}
+                    {/*detectAutoPan={false}*/}
+                    {/*ref={Viewer => this.Viewer = Viewer}>*/}
+                    {/*<svg width={width} height={height}>*/}
+                        {/*<g>*/}
 
-                    <svg width={width} height={height}>
-                        <g>
+                            {/*<Images images={images} width={width} height={height} bounds={bounds}*/}
+                            {/*/>*/}
 
-                            <Images images={images} width={width} height={height} bounds={bounds}
-                            />
+                            {/*<Polylines paths={this.props.polylines} width={width} height={height} bounds={bounds}*/}
+                            {/*/>*/}
 
-                            <Polylines paths={this.props.polylines} width={width} height={height} bounds={bounds}
-                            />
+                            {/*<Circles circles={this.props.circles} width={width} height={height} bounds={bounds}*/}
+                            {/*/>*/}
 
-                            <Circles circles={this.props.circles} width={width} height={height} bounds={bounds}
-                            />
+                            {/*<Polygons polygons={this.props.polygons} width={width} height={height} bounds={bounds}*/}
+                            {/*/>*/}
 
-                            <Polygons polygons={this.props.polygons} width={width} height={height} bounds={bounds}
-                            />
+                            {/*<Polygons text={this.props.text} width={width} height={height} bounds={bounds}*/}
+                            {/*/>*/}
 
-                        </g>
-                    </svg>
+                        {/*</g>*/}
+                    {/*</svg>*/}
 
-                </ReactSVGPanZoom>
+                {/*</ReactSVGPanZoom>*/}
             </div>
         )
     }
@@ -83,6 +93,7 @@ class Map extends React.Component {
 Map.propTypes = {
     mapQuality: PropTypes.oneOf(['low', 'medium', 'high']),
     images: PropTypes.arrayOf(PropTypes.object),
+    text: PropTypes.arrayOf(PropTypes.object),
     polylines: PropTypes.arrayOf(PropTypes.object),
     circles: PropTypes.arrayOf(PropTypes.object),
     buttons: PropTypes.arrayOf(PropTypes.object),
@@ -90,6 +101,7 @@ Map.propTypes = {
     showWorldMap: PropTypes.bool,
     initialPos: PropTypes.objectOf(PropTypes.number),
     bounds: PropTypes.objectOf(PropTypes.number),
+    handleClick: PropTypes.func,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired
 
@@ -97,12 +109,14 @@ Map.propTypes = {
 
 Map.defaultProps = {
     mapQuality: 'medium',
+    text: [],
     images: [],
     polylines: [],
     circles: [],
     buttons: [],
     polygons: [],
     showWorldMap: true,
+    // handleClick: this.defaultHandleClick,
     initialPos: {'lat': 0, 'lng': 0, 'zoom': 1},
     bounds: {'topLat': 90, 'topLng': -180, 'bottomLat': -90, 'bottomLng': 180}
 };

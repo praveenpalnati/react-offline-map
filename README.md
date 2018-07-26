@@ -16,6 +16,7 @@ npm install --save react-offline-map
 | height            | **required** | Number | Height of the viewer displayed on screen |
 | mapQuality        | 'medium'     | String | Creates a map of low, medium or high quality |
 | images            | []           | Array  | Images to be displayed on the screen     |
+| text              | []           | Array  | Text to be displayed on the screen     |
 | polylines         | []           | Array  | Polylines to be displayed on the screen  |
 | circles           | []           | Array  | Circles to be displayed on the screen    |
 | buttons           | []           | Array  | Buttons to be displayed on the screen    |
@@ -23,6 +24,7 @@ npm install --save react-offline-map
 | showWorldMap      | true         | bool   | Decides whether background includes world map |
 | initialPos        | {'lat': 0, 'lng': 0, 'zoom': 1} | Object | Sets the initial position of the viewer |
 | bounds            | {'topLat': 90, 'topLng': -180, 'bottomLat': -90, 'bottomLng': 180} | Object | Sets the bounds for a viewer |
+| onClick           | function     | func   | Allows a callback function. Returns Evt in form {lat: [latitude of click], lng: [longitude of click], evt: [mouseEvent] | 
 
   
 NOTE: all coordinates given in Lat/Long (UTM not accepted)  
@@ -106,6 +108,12 @@ class Advanced extends React.Component {
             showWorldMap: !this.state.showWorldMap
         })
     };
+    
+    printClick = (event) => {
+        console.log("CLICK");
+        console.log(event);
+    };
+    
     render() {
         var images = [
             {'url': mojave, 'topLat': 35.184619089603586, 'topLng': -116.19619200291318, 'bottomLat': 35.173016651002655, 'bottomLng': -116.18129480877964},
@@ -167,6 +175,7 @@ class Advanced extends React.Component {
                     circles={circles}
                     polylines={polylines}
                     polygons={polygons}
+                    handleClick={this.printClick}
                 />
             </div>
         );

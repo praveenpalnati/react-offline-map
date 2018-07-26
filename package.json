@@ -1,8 +1,9 @@
 {
   "name": "react-offline-map",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React component using svg-pan-zoom to view maps without internet connection",
   "main": "build/index.js",
+  "license": "MIT",
   "peerDependencies": {
     "react": "^15.5.4"
   },
@@ -15,6 +16,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch",
     "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oboyle-matthew/react-offline-map"
+  },
+  "bugs": {
+    "url": "https://github.com/oboyle-matthew/react-offline-map/issues"
   },
   "author": {
     "name": "Matthew O'Boyle",

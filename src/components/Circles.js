@@ -10,7 +10,6 @@ class Circles extends React.Component {
             var cy = convertLat(plan.lat, this.props.height, this.props.bounds);
             return <svg key={i}>
                 <circle cx={cx} cy={cy} r={plan.r} fill={plan.fill} stroke={'black'} strokeWidth={0.2}/>
-                <text textAnchor={'middle'} style={{fontSize: plan.text.size, fontWeight: 'bold', fill: plan.text.color}} x={cx} y={cy - plan.r}>{plan.text.name}</text>
             </svg>
         });
     }
