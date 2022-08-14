@@ -1,6 +1,6 @@
 {
-  "name": "react-offline-map",
-  "version": "0.3.0",
+  "name": "react-offline-map-2",
+  "version": "0.4.0",
   "description": "React component using svg-pan-zoom to view maps without internet connection",
   "main": "build/index.js",
   "license": "MIT",
