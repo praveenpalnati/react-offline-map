@@ -6,7 +6,7 @@ It makes use of svg-pan-zoom to display this map in a very user-friendly way.
 ## Install
 ### NPM
 ```sh
-npm install --save react-offline-map
+npm install --save react-offline-map-2
 ```
 
 ## Props  
