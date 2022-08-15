@@ -7,6 +7,7 @@ import Polylines from './components/Polylines'
 import Images from './components/Images.js'
 import Circles from './components/Circles.js'
 import Polygons from './components/Polygons.js'
+import Text from './components/Text.js'
 
 import {convertLat, convertLng, reverseLat, reverseLng} from "./components/CoordinateConverter";
 
