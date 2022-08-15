@@ -79,6 +79,9 @@ class Map extends React.Component {
                             <Circles circles={this.props.circles} width={width} height={height} bounds={this.props.bounds}
                             />
 
+                            <Text text={this.props.text} width={width} height={height} bounds={this.props.bounds}
+                            />
+
                         </g>
                     </svg>
 
@@ -95,6 +98,7 @@ Map.propTypes = {
     circles: PropTypes.arrayOf(PropTypes.object),
     buttons: PropTypes.arrayOf(PropTypes.object),
     polygons: PropTypes.arrayOf(PropTypes.object),
+    text: PropTypes.arrayOf(PropTypes.object),
     showWorldMap: PropTypes.bool,
     initialPos: PropTypes.objectOf(PropTypes.number),
     bounds: PropTypes.objectOf(PropTypes.number),
